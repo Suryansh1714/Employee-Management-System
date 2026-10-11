@@ -21,6 +21,37 @@ const INITIAL_FORM_STATE = {
 }
 
 function App() {
+  // Theme State (Dark / Light) with persistence
+  const getInitialTheme = () => {
+    try {
+      const savedTheme = localStorage.getItem('theme')
+      if (savedTheme === 'dark' || savedTheme === 'light') {
+        return savedTheme
+      }
+    } catch {
+      // In case localStorage is disabled or restricted
+    }
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    }
+    return 'light'
+  }
+
+  const [theme, setTheme] = useState(getInitialTheme)
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    try {
+      localStorage.setItem('theme', theme)
+    } catch {
+      // ignore storage write errors
+    }
+  }, [theme])
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'))
+  }
+
   // Backend Health Status State
   const [healthStatus, setHealthStatus] = useState({ loading: true, data: null, error: null })
 
@@ -304,8 +335,29 @@ function App() {
           <div className="logo-icon">EMS</div>
           <span className="brand-title">Employee Management System</span>
         </div>
-        <div className="badge-tag" id="project-tag">
-          College Assignment 4 &bull; Project ID 3
+        <div className="nav-actions">
+          <button
+            id="theme-toggle-btn"
+            className="theme-toggle-btn"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            {theme === 'dark' ? (
+              <>
+                <span className="theme-icon" aria-hidden="true">&#9728;&#65039;</span>
+                <span className="theme-label">Light Mode</span>
+              </>
+            ) : (
+              <>
+                <span className="theme-icon" aria-hidden="true">&#127769;</span>
+                <span className="theme-label">Dark Mode</span>
+              </>
+            )}
+          </button>
+          <div className="badge-tag" id="project-tag">
+            College Assignment 4 &bull; Project ID 3
+          </div>
         </div>
       </header>
 

@@ -21,8 +21,12 @@
   z-index: 20;
 }
 
+[data-theme="dark"] .navbar {
+  background: rgba(22, 23, 29, 0.85);
+}
+
 @media (prefers-color-scheme: dark) {
-  .navbar {
+  :root:not([data-theme="light"]) .navbar {
     background: rgba(22, 23, 29, 0.85);
   }
 }
@@ -62,6 +66,52 @@
   background: var(--code-bg);
   border: 1px solid var(--border);
   color: var(--text);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--code-bg);
+  color: var(--text-h);
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--border);
+  transform: translateY(-1px);
+}
+
+.theme-toggle-btn:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+.theme-icon {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+@media (max-width: 640px) {
+  .theme-toggle-btn .theme-label {
+    display: none;
+  }
+  .theme-toggle-btn {
+    padding: 0.35rem 0.6rem;
+  }
 }
 
 
@@ -131,8 +181,12 @@
   -webkit-backdrop-filter: blur(8px);
 }
 
+[data-theme="dark"] .status-card {
+  background: rgba(31, 32, 40, 0.7);
+}
+
 @media (prefers-color-scheme: dark) {
-  .status-card {
+  :root:not([data-theme="light"]) .status-card {
     background: rgba(31, 32, 40, 0.7);
   }
 }
@@ -227,8 +281,12 @@
   color: #065f46;
 }
 
+[data-theme="dark"] .status-success {
+  color: #6ee7b7;
+}
+
 @media (prefers-color-scheme: dark) {
-  .status-success {
+  :root:not([data-theme="light"]) .status-success {
     color: #6ee7b7;
   }
 }
@@ -252,8 +310,12 @@
   color: #b45309;
 }
 
+[data-theme="dark"] .status-text.notice {
+  color: #fcd34d;
+}
+
 @media (prefers-color-scheme: dark) {
-  .status-text.notice {
+  :root:not([data-theme="light"]) .status-text.notice {
     color: #fcd34d;
   }
 }
@@ -283,8 +345,12 @@
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+[data-theme="dark"] .card {
+  background: rgba(31, 32, 40, 0.6);
+}
+
 @media (prefers-color-scheme: dark) {
-  .card {
+  :root:not([data-theme="light"]) .card {
     background: rgba(31, 32, 40, 0.6);
   }
 }
@@ -386,8 +452,12 @@
   backdrop-filter: blur(8px);
 }
 
+[data-theme="dark"] .stat-card {
+  background: rgba(31, 32, 40, 0.7);
+}
+
 @media (prefers-color-scheme: dark) {
-  .stat-card {
+  :root:not([data-theme="light"]) .stat-card {
     background: rgba(31, 32, 40, 0.7);
   }
 }
@@ -461,8 +531,12 @@
   box-sizing: border-box;
 }
 
+[data-theme="dark"] .search-input {
+  background: rgba(26, 27, 34, 0.8);
+}
+
 @media (prefers-color-scheme: dark) {
-  .search-input {
+  :root:not([data-theme="light"]) .search-input {
     background: rgba(26, 27, 34, 0.8);
   }
 }
@@ -484,8 +558,12 @@
   transition: all 0.2s ease;
 }
 
+[data-theme="dark"] .filter-select {
+  background: rgba(26, 27, 34, 0.8);
+}
+
 @media (prefers-color-scheme: dark) {
-  .filter-select {
+  :root:not([data-theme="light"]) .filter-select {
     background: rgba(26, 27, 34, 0.8);
   }
 }
@@ -544,8 +622,12 @@
   color: #065f46;
 }
 
+[data-theme="dark"] .alert-success {
+  color: #6ee7b7;
+}
+
 @media (prefers-color-scheme: dark) {
-  .alert-success {
+  :root:not([data-theme="light"]) .alert-success {
     color: #6ee7b7;
   }
 }
@@ -556,8 +638,12 @@
   color: #991b1b;
 }
 
+[data-theme="dark"] .alert-error {
+  color: #fca5a5;
+}
+
 @media (prefers-color-scheme: dark) {
-  .alert-error {
+  :root:not([data-theme="light"]) .alert-error {
     color: #fca5a5;
   }
 }
@@ -585,8 +671,12 @@
   backdrop-filter: blur(8px);
 }
 
+[data-theme="dark"] .table-wrapper {
+  background: rgba(31, 32, 40, 0.7);
+}
+
 @media (prefers-color-scheme: dark) {
-  .table-wrapper {
+  :root:not([data-theme="light"]) .table-wrapper {
     background: rgba(31, 32, 40, 0.7);
   }
 }
@@ -899,6 +989,10 @@
 
 .btn-secondary:hover {
   background: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .btn-danger {
